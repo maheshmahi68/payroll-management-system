@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip</title>
+
+    <!-- Linking CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="title">Employee Payslip</h2>
+
+        <div class="card">
+            <p><span class="label">Name:</span> {{ name }}</p>
+            <p><span class="label">Basic Salary:</span> ₹{{ basic }}</p>
+            <p><span class="label">Overtime:</span> ₹{{ overtime }}</p>
+            <p><span class="label">Tax Deduction:</span> ₹{{ tax }}</p>
+
+            <hr>
+
+            <p class="total"><span class="label">Total Salary:</span> ₹{{ total_salary }}</p>
+        </div>
+
+        <a href="/" class="btn">Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculate Salary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="title">Calculate Salary</h2>
+
+    <div class="card">
+        <form action="/payslip" method="post">
+
+            <label class="label">Select Employee:</label>
+            <select name="name" class="input-box" required onchange="updateSalary()">
+                <option value="" disabled selected>Select</option>
+                {% for emp, sal in employees %}
+                    <option value="{{ emp }}" data-salary="{{ sal }}">{{ emp }}</option>
+                {% endfor %}
+            </select>
+
+            <label class="label">Basic Salary:</label>
+            <input type="text" id="basic" name="basic" class="input-box" readonly>
+
+            <label class="label">Overtime Amount:</label>
+            <input type="number" name="overtime" class="input-box" required>
+
+            <button type="submit" class="btn">Generate Payslip</button>
+        </form>
+    </div>
+
+    <a href="/" class="btn">Back</a>
+</div>
+
+<script>
+function updateSalary() {
+    let dropdown = document.querySelector("select[name='name']");
+    let selected = dropdown.options[dropdown.selectedIndex];
+    let salary = selected.getAttribute("data-salary");
+    document.getElementById("basic").value = salary;
+}
+</script>
+
+</body>
+</html>
